@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Assistant', sans-serif;
+}
+  
+.homePage{
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr auto;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.flight_wrapper{
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'menu main main main main main'
+      'menu footer footer footer footer footer';
+    gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+    height: 100%;
+}
+.searchMenu{
+  grid-area: menu;
+  height: 100%;
+}
+
+#flight_result_container{
+  grid-area: main;
+  height: 100%;
+}
+
+.rank {
+  text-align: center;
+}
+
+.rank-table {
+  margin-top: 75px;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+}
+
+.rank-table thead tr {
+  background-color: #202649;
+  color: #ffffff;
+  /* text-align: left; */
+}
+
+.rank-table th,
+.rank-table td {
+    padding: 12px 15px;
+}
+
+.rank-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.rank-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.rank-table tbody tr:last-of-type {
+  border-bottom: 2px solid #202649;
+}
+
+.rank-table tbody tr.active-row {
+  font-weight: bold;
+  color: #202649;
+}
+
+.rank-table-tab {
+  text-align: center;
+  padding: 0px;
+  min-width: 250px;
+}
+
+.rank-table-tab th,
+.rank-table-tab td {
+    padding: 0px;
+    width: 125px
+}
+
+.pageTitle {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.table-games {
+  border: 1px black solid;
+}
+
+.table-row-games {
+  border: 1px black solid;
+}
+
+.table-row-cell {
+  border: 1px black solid;
+  padding: 4px;
+}
+
+.home-page-content {
+  border: 2px solid black;
+  padding: 10px 0px 10px 0px;
+  margin: 100px 30px 0px 30px;
+  text-align: center;
+}
