@@ -22,19 +22,28 @@
       'header header header header header header'
       'menu main main main main main'
       'menu footer footer footer footer footer';
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
     background-color: #2196F3;
     padding: 10px;
     height: 100%;
 }
-.searchMenu{
+#searchBar_container{
   grid-area: menu;
   height: 100%;
+  width:100%;
 }
 
 #flight_result_container{
   grid-area: main;
   height: 100%;
+}
+
+#passanger_form{
+  margin: 0 auto;
+  width:50%;
+  height:50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .rank {

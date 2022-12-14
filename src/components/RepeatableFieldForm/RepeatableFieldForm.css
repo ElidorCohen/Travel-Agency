@@ -1,0 +1,18 @@
+.passenger_filed{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+}
+.fields_row{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+.passnger_fields_label{
+    padding:10px;
+}
+
+.add_field_btn{
+    padding:10px;
+    text-align: center;
+}

@@ -1,5 +1,10 @@
 .header{
-    height:50%;
+    height:80%;
     background-color: #fff;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    text-align: center;
+
+}
+.header h1{
+    padding-top: 15px;
 }

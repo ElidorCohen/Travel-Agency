@@ -1,0 +1,12 @@
+.deck_componenet{
+    height: 600px;
+    width: 400px;
+    background-color: lightblue;
+    margin: 0 auto;
+    border-radius: 15px;
+    opacity: 0.9;
+}
+
+.deck_container{
+    text-align: center;
+}

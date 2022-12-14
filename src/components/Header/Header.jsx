@@ -11,7 +11,7 @@ export default function Header ({ id, teamA, teamB, date, info, setModalContent,
     return (
         <>
             <div className='header'>
-                sdfasdfas
+               <h1> Travel Marmelade </h1>
             </div>
         </>
     )

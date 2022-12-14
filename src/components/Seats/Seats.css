@@ -1,0 +1,11 @@
+.seats_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 10px;
+    
+}
+
+.seat_icon{
+    cursor: pointer;
+}

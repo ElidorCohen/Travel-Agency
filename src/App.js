@@ -3,6 +3,8 @@ import Modal from "./components/Modal";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from "./pages/Home";
 import Flights from "./pages/Flights";
+import SeatsPicker from "./pages/SeatsPicker";
+import PassengerDetails from "./pages/PassengerDetails";
 import Rank from "./pages/Rank";
 import SideBets from "./pages/SideBets";
 import { useEffect, useState } from "react";
@@ -41,6 +43,8 @@ function App() {
                 <Routes>
                     <Route path="/" exact element={<Home/>}/>
                     <Route path="/flights" element={<Flights/>}></Route> 
+                    <Route path="/PassengerDetails" element={<PassengerDetails/>}></Route> 
+                    <Route path="/SeatsPicker" element={<SeatsPicker/>}></Route> 
                 </Routes>
             </div>
     );
