@@ -1,0 +1,13 @@
+.seats_info_components{
+    min-height: 600px;
+    width: 400px;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 15px;
+    opacity: 0.9;
+    margin-top: 10px;
+}
+
+.seats_info_container{
+    text-align: center;
+}

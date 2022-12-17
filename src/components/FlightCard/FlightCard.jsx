@@ -1,12 +1,13 @@
 import { useState } from "react";
+import {Link, useLocation } from 'react-router-dom';
+import moment from 'moment'
 import "./FlightCard.css";
 import { useEffect } from "react";
 import EL_AL_New_Logo from "../../images/logo-of-el-al-israel-airlines-1.svg"
 import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
 import Button from '@mui/material/Button';
 
-export default function FlightCard  ({ logoa, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
-
+export default function FlightCard  ({flightObj}){
     const getCarrierLogo = () =>{
         return(
             <div className='carriers_logo_container'>
@@ -19,7 +20,7 @@ export default function FlightCard  ({ logoa, logob, teamB, date, info, setModal
     const flightData = () =>{
         return(
             <div className='flights_details_container'>
-                {flightTime("06:00","LAV","08:00","TLV")}
+                {flightTime(moment(new Date(flightObj.departure_time)).format('HH:mm'),flightObj.origin,moment(new Date(flightObj.landing_time)).format('HH:mm'),flightObj.destination)}
                 {flightTime("12:00","LAX","08:00","TLV")}
             </div>
         )
@@ -60,13 +61,21 @@ export default function FlightCard  ({ logoa, logob, teamB, date, info, setModal
                     <Button
                         variant="outlined"
                     >
-                        SAELECTA BLATH
+                        <Link 
+                            to={{
+                                pathname: '/PassengerDetails',
+                            }}
+                            state={{ 'fieldsNum':3}}
+                        >
+                            SAELECTA BLATH
+                        </Link>
+                        
                     </Button>
                 </div>
             </div>
         );
     }
-
+    console.log("YAYAYAYAYAYAAYAYYYAYAYAY")
     return (
         <>
         <div className="flight_card_container" style={{marginBottom: "30px"}}>       

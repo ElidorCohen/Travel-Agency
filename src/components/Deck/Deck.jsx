@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Deck.css";
 import Seats from "../Seats/Seats";
+import SeatsInfo from "../SeatsInfo/SeatsInfo";
 
 import EL_AL_New_Logo from "../../images/logo-of-el-al-israel-airlines-1.svg"
 import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
@@ -85,7 +86,7 @@ export default function Deck ({ logoa, logob, teamB, date, info, setModalContent
                     <Seats/>
                     <Seats/>
                     <Seats/>
-                    
+                    <SeatsInfo/>
                     {/* {getCarrierLogo()}
                     {flightData()}
                     {price()} */}
