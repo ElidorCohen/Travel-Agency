@@ -13,7 +13,7 @@ function Flights() {
   useEffect(() => {
     const getFlights = async ()=>{
       try{  
-        const res  = await axios.get('http://localhost:3000/getFlights');
+        const res  = await axios.get('http://localhost:3001/getFlights');
         setFlights(res.data.flights);
         console.log(res.data.flights);
       } catch (e){

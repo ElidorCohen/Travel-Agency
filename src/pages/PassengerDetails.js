@@ -12,19 +12,16 @@ function PassangerDetails() {
 
   const location = useLocation();
   const fieldsNum = location.state.fieldsNum
-  console.log(location)
 
 
   const [fields, setFields] = useState([]);
   let fieldsArray = [];
-  console.log(fieldsNum)
   useEffect(async () => {
     const addFields =async ()=>{
       for( let i = 0; i < fieldsNum; i++){
         console.log(i)
         fieldsArray.push({ id: fields.length + 1, value: '' });
       }
-      console.log("fieldsNum ", fields )
       setFields(fieldsArray)
     };
     addFields();
@@ -53,14 +50,14 @@ function PassangerDetails() {
       <div className="passenger_filed" key={field.id}>
         <div className='fields_row'>
           <TextField
-            id={`field-${field.id}`}
+            id={`name-field-${field.id}`}
             value={field.value}
             onChange={(event) => handleChange(event, index)}
             label="First Name"
           >
           </TextField>
           <TextField
-            id={`field-${field.id}`}
+            id={`lm-field-${field.id}`}
             value={field.value}
             onChange={(event) => handleChange(event, index)}
             label="Last Name"
@@ -69,14 +66,21 @@ function PassangerDetails() {
         </div>
         <div className='fields_row'>
           <TextField
-            id={`field-${field.id}`}
+            id={`passport-field-${field.id}`}
             value={field.value}
             onChange={(event) => handleChange(event, index)}
             label="Passport number"
           >
           </TextField>
           <TextField
-            id={`field-${field.id}`}
+            id={`phone-field-${field.id}`}
+            value={field.value}
+            onChange={(event) => handleChange(event, index)}
+            label="Phone Number"
+          >
+          </TextField>
+          <TextField
+            id={`seat-field-${field.id}`}
             value={field.value}
             onChange={(event) => handleChange(event, index)}
             label="Phone Number"

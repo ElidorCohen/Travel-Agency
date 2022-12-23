@@ -10,3 +10,18 @@
 .deck_container{
     text-align: center;
 }
+
+.row-letter{
+    display: flex;
+    width: 50%;
+    justify-content:center;
+}
+
+.row-letter-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.seat_letter{
+    margin: 10px;
+}

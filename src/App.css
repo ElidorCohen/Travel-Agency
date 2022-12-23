@@ -18,6 +18,7 @@
 
 .flight_wrapper{
     display: grid;
+    min-height: 100%;
     grid-template-areas:
       'header header header header header header'
       'menu main main main main main'
