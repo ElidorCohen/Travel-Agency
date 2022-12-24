@@ -16,7 +16,6 @@ export const pickSeat = (e,passengerNumber, setPassengerNumber) => {
             delete pickedSeats[e.target.id];
             // passengerNumber.current = passengerNumber.current + 1
             setPassengerNumber(prev => prev + 1)
-
         }
 
     }

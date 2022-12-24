@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./SearchBar.css";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -21,10 +21,19 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
     const [value, setValue] = useState(
         moment('2014-08-18T21:11:54'),
     );
+    const formRef = useRef({
+        'flight_type':"",
+        'from':"",
+        'to':"",
+        'depart_date':"",
+        'landing_date':"",
+        'direct':""
+    })
     
     const handleChange = (newValue) => {
       setValue(newValue);
     };
+    
     
 
     return (
@@ -35,6 +44,8 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
+                        inputRef={(ele) => {formRef.current.flight_type = ele}}
+                        onChange={()=>{controller.onChangeFlightType(formRef)}}
                     >
                         <FormControlLabel value="Round" control={<Radio />} label="Round" />
                         <FormControlLabel value="One-Way" control={<Radio />} label="One-Way" />
@@ -43,17 +54,21 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                 <div id="flight_details">
                     <Autocomplete
                         disablePortal
-                        id="combo-box-demo"
+                        id="from"
                         // options={top100Films}
+                        onChange={(e, value)=>{console.log(value)}} // get value
                         sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Movie" />}
+                        ref={(ele) => {formRef.current.from = ele}}
+                        renderInput={(params) => <TextField {...params} label="From" />}
                     />
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        // options={top100Films}
+                        options={['top100Films','yes','no']}
                         sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Movie" />}
+                        inputRef={(ele) => {formRef.current.to = ele}}
+                        onChange={(e, value)=>{console.log(value)}}
+                        renderInput={(params) => <TextField {...params} label="To" />}
                     />
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                         <MobileDatePicker
@@ -61,6 +76,7 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             inputFormat="MM/DD/YYYY"
                             value={value}
                             onChange={handleChange}
+                            inputRef={(ele) => {formRef.current.depart_date = ele}}
                             renderInput={(params) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
@@ -70,13 +86,14 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             inputFormat="MM/DD/YYYY"
                             value={value}
                             onChange={handleChange}
+                            inputRef={(ele) => {formRef.current.landing_date = ele}}
                             renderInput={(params) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
                 </div>
                 <div id="search_Filters">
                     <div>
-                      <FormControlLabel control={<Checkbox />} label="Direct Flights Only" />
+                      <FormControlLabel  onChange={()=>{console.log(formRef.current.direct)}} ref={(ele) => {formRef.current.direct = ele}} control={<Checkbox />} label="Direct Flights Only" />
                     </div>
                     <Button variant="contained" onClick={controller.search_flight}>Search</Button>
                 </div>
