@@ -1,5 +1,10 @@
 .seats_info_components{
-    min-height: 600px;
+ 
+}
+
+.seats_info_container{
+    text-align: center;
+    min-height: 200px;
     width: 400px;
     background-color: white;
     margin: 0 auto;
@@ -8,6 +13,16 @@
     margin-top: 10px;
 }
 
-.seats_info_container{
-    text-align: center;
+#total{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    font-size: 30px;
+    justify-content:space-around;
+    padding-top: 15px;
+}
+
+#payment_button{
+    position: relative;
+    top:90px;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "./Deck.css";
 import Seats from "../Seats/Seats";
 import SeatsInfo from "../SeatsInfo/SeatsInfo";
@@ -9,18 +9,23 @@ import Button from '@mui/material/Button';
 
 export const  pickedSeats = []
 export default function Deck ({ logoa, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
-    const takenSeats = ['A3','B1','C2']
-    const passengerNumber = useRef(3)
+    const takenSeats = ['A3','B1','C2','C13']
+    const [passengerNumber,setPassengerNumber] = useState(()=>{return 3})
     const [seatsComponenets, setSeatsComponenets] = useState([])
+    const totalSeatPrice = useRef(0);
+
+    // useCallback(()=> {
+    //     console.log("yayayayay");
+    //     setTotalSeats(3)
+    // }, [seatsComponenets])
+
     useEffect(()=>{
         const initSeats = ()=>{
             let rowPrice = 100;
             let temp =[];
             for (let i = 1; i < 19 ; i++){
-                console.log(i)
                 switch(i){
                     case 5:
-                        console.log("asdtasdt")
                         rowPrice = 200;
                         break;
                         
@@ -33,12 +38,11 @@ export default function Deck ({ logoa, logob, teamB, date, info, setModalContent
                     default:
                         break;
                 }
-                console.log(rowPrice)
                 temp.push(
                     <Seats
                         rowNumber={i}
                         passangerNumber={passengerNumber}
-                        // setPassengerNumber={setPassengerNumber}
+                        setPassengerNumber={setPassengerNumber}
                         rowPrice={rowPrice}
                     />
                 )
@@ -53,11 +57,25 @@ export default function Deck ({ logoa, logob, teamB, date, info, setModalContent
                 document.getElementById(`seat-${element}`).ariaDisabled = 'true'
             })
         }
+        let total = 0;
+        Object.keys(pickedSeats).forEach((ele)=>{
+            total += parseInt(pickedSeats[ele].price);
+            console.log(pickedSeats[ele])
+        })
+        totalSeatPrice.current=total
+        console.log(total)
         initSeats();
         setTimeout(()=>{
             disableSeats();
         }, 150)
-    },[])
+        if(passengerNumber === 0){
+            document.getElementById("payment_button").scrollIntoView({
+                behavior: 'smooth', // Defines the transition animation. default: auto
+                block: 'start', // Defines vertical alignment. default: start
+                inline: 'start' // Defines horizontal alignment. default: nearest
+            });
+        }
+    },[passengerNumber])
 
 
     return (
@@ -72,7 +90,7 @@ export default function Deck ({ logoa, logob, teamB, date, info, setModalContent
                             <div className="seat_letter">C</div>
                         </div>
                         <div className="row-letter">
-                            <div className="seat_letter">D</div>
+                            <div className="seat_letter" onClick={()=>{setPassengerNumber("asdfsadfasdf"); console.log("asdfasdf")}}>D</div>
                             <div className="seat_letter">E</div>
                             <div className="seat_letter">F</div>
                         </div>
@@ -96,7 +114,9 @@ export default function Deck ({ logoa, logob, teamB, date, info, setModalContent
                         rowPrice={1200}
                     /> */}
                     {seatsComponenets}
-                    <SeatsInfo/>
+                    <SeatsInfo
+                        totalSeats={totalSeatPrice.current}
+                    />
                     {/* {getCarrierLogo()}
                     {flightData()}
                     {price()} */}

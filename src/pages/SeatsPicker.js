@@ -8,6 +8,7 @@ function Flights() {
   useEffect(() => {
     
   }, []);
+  
 
 
   return (
@@ -17,7 +18,10 @@ function Flights() {
             <Header/>
           </div>
           <div id="deck_container">
-            <Deck /> 
+            <Deck 
+              // passengerNumber={passengerNumber}
+              // setPassengerNumber={setPassengerNumber}
+            /> 
           </div>
       </div>
     </>

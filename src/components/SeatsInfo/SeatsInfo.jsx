@@ -6,33 +6,42 @@ import EL_AL_New_Logo from "../../images/logo-of-el-al-israel-airlines-1.svg"
 import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
 import { pickedSeats } from "../Deck/Deck";
 
-export default function SeatsInfo ({ logoa, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
+export default function SeatsInfo ({ totalSeats, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
+    // calculate order price.
     const calculatePrice = () => {
-        Object.keys(pickedSeats).forEach(()=>{
-            
+        let total;
+        Object.keys(pickedSeats).forEach((ele)=>{
+            total += ele.price;
         })
+        console.log(total)
+        return total;
     }
     return (
         <>
         <div className="seats_info_container">
             <div className="seats_info_components">
-                sadasdfasd
-                <Button
-                        variant="outlined"
-                    >
-                        <Link 
-                            to={{
-                                pathname: '/PaymentPage',
-                            }}
-                            // state={{ 
-                            //     'seats':[...seats],
-                            //     'price':'price'
-                            // }}
+                <div id="total">
+                    <p>Extra Fee's:</p>
+                    <p>{totalSeats}$</p>
+                </div>
+                <div id="payment_button">
+                    <Button
+                            variant="outlined"
                         >
-                            Procced to payment
-                        </Link>
-                        
+                            <Link 
+                                to={{
+                                    pathname: '/PaymentPage',
+                                }}
+                                // state={{ 
+                                //     'seats':[...seats],
+                                //     'price':'price'
+                                // }}
+                            >
+                                Procced to payment
+                            </Link>
+                            
                     </Button>
+                </div>
             </div>
         </div>
         </>

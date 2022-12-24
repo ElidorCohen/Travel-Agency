@@ -15,7 +15,6 @@ function Flights() {
       try{  
         const res  = await axios.get('http://localhost:3001/getFlights');
         setFlights(res.data.flights);
-        console.log(res.data.flights);
       } catch (e){
         console.warn(e);
       }

@@ -10,7 +10,6 @@ export default function RepeatableFieldForm({fieldsNum}) {
 
   useEffect(() => {
     const addFields =async ()=>{
-      console.log("fieldsNum ", fieldsNum )
       for( let i = 0; i< fieldsNum; i++){
         fields.push({ id: fields.length + 1, value: '' })
       }

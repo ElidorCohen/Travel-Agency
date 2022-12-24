@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Seats.css";
 import SearchBar from "../SearchBar/SearchBar";
 import SeatsPlaceHolder from "../SeatPlaceHolder/SeatPlaceHolder";
@@ -12,55 +12,75 @@ export default function Seats ({ rowNumber, rowPrice, setPassengerNumber, passan
     const createSeatRows = () => {
         return(
             <>
+                <div style={{'position':'absolute'}}>{rowPrice}$</div>
                 <div className='seats_row_container' >
-                    <div className='seat_parent' aria-disabled='true'  onClick={(e)=>controller.pickSeat(e, passangerNumber)}  > 
-                            <SeatsPlaceHolder
-                                seatNumber={`A${rowNumber}`}
-                                id={`seat-A${rowNumber}`}
-                                onClick={(e)=>controller.pickSeat(e)}
-                            />
+                    
+                    <div className='seat_parent' aria-disabled='true'  onClick={(e)=>controller.pickSeat(e, passangerNumber, setPassengerNumber)}  > 
+                        <Tooltip title={`Seat Price: ${rowPrice}$`}>
+                            <div>
+                                <SeatsPlaceHolder
+                                    seatNumber={`A${rowNumber}`}
+                                    id={`seat-A${rowNumber}`}
+                                />
+                            </div>
+                        </Tooltip>
                     </div>
-                    <div className='seat_parent' aria-disabled='false'  onClick={(e)=>controller.pickSeat(e,  passangerNumber)}  > 
-                            <SeatsPlaceHolder
-                                seatNumber={`B${rowNumber}`}
-                                id={`seat-B${rowNumber}`}
-                                onClick={(e)=>controller.pickSeat(e)}
-                            />
+                    <div className='seat_parent' aria-disabled='false'  onClick={(e)=>controller.pickSeat(e,  passangerNumber, setPassengerNumber)}  > 
+                        <Tooltip title={`Seat Price: ${rowPrice}$`}>
+                            <div>
+                                <SeatsPlaceHolder
+                                    seatNumber={`B${rowNumber}`}
+                                    id={`seat-B${rowNumber}`}
+                                />
+                            </div>
+                        </Tooltip>
                     </div>
-                    <div className='seat_parent' aria-disabled='false' onClick={(e)=>controller.pickSeat(e, passangerNumber)}>
-                            <SeatsPlaceHolder
-                                seatNumber={`C${rowNumber}`}
-                                id={`seat-C${rowNumber}`}
-                            />
+                    <div className='seat_parent' aria-disabled='false' onClick={(e)=>controller.pickSeat(e, passangerNumber, setPassengerNumber)}>
+                        <Tooltip title={`Seat Price: ${rowPrice}$`}>                           
+                            <div>                            
+                                <SeatsPlaceHolder
+                                    seatNumber={`C${rowNumber}`}
+                                    id={`seat-C${rowNumber}`}
+                                />
+                            </div>
+                        </Tooltip>
                     </div>
                 </div>
                 <div className='seats_row_container'>
-                    <div className='seat_parent' aria-disabled='true'  onClick={(e)=>controller.pickSeat(e, passangerNumber)} > 
-                            <SeatsPlaceHolder
-                                seatNumber={`D${rowNumber}`}
-                                id={`seat-D${rowNumber}`}
-                                onClick={(e)=>controller.pickSeat(e)}
-                            />
+                    <div className='seat_parent' aria-disabled='true'  onClick={(e)=>controller.pickSeat(e, passangerNumber, setPassengerNumber)} > 
+                        <Tooltip title={`Seat Price: ${rowPrice}$`}>
+                            <div>
+                                <SeatsPlaceHolder
+                                    seatNumber={`D${rowNumber}`}
+                                    id={`seat-D${rowNumber}`}
+                                />
+                            </div>
+                        </Tooltip>
                     </div>
-                    <div className='seat_parent' aria-disabled='false'  onClick={(e)=>controller.pickSeat(e, passangerNumber)} > 
-                            <SeatsPlaceHolder
-                                seatNumber={`E${rowNumber}`}
-                                id={`seat-E${rowNumber}`}
-                                onClick={(e)=>controller.pickSeat(e)}
-                            />
+                    <div className='seat_parent' aria-disabled='false'  onClick={(e)=>controller.pickSeat(e, passangerNumber, setPassengerNumber)} > 
+                        <Tooltip title={`Seat Price: ${rowPrice}$`}>
+                            <div>
+                                <SeatsPlaceHolder
+                                    seatNumber={`E${rowNumber}`}
+                                    id={`seat-E${rowNumber}`}
+                                />
+                            </div>
+                        </Tooltip>
                     </div>
-                    <div className='seat_parent' aria-disabled='false'  onClick={(e)=>controller.pickSeat(e, passangerNumber)} > 
-                            <SeatsPlaceHolder
-                                seatNumber={`F${rowNumber}`}
-                                id={`seat-F${rowNumber}`}
-                                onClick={(e)=>controller.pickSeat(e)}
-                            />
+                    <div className='seat_parent' aria-disabled='false'  onClick={(e)=>controller.pickSeat(e, passangerNumber, setPassengerNumber)} > 
+                        <Tooltip title={`Seat Price: ${rowPrice}$`}>
+                            <div>
+                                <SeatsPlaceHolder
+                                    seatNumber={`F${rowNumber}`}
+                                    id={`seat-F${rowNumber}`}
+                                />
+                            </div>
+                        </Tooltip>
                     </div>
                 </div>
             </>
         )
     };
-    console.log('seats.js', rowPrice)
 
     return (
         <>
