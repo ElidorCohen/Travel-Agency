@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Flights from "./pages/Flights";
 import SeatsPicker from "./pages/SeatsPicker";
 import PassengerDetails from "./pages/PassengerDetails";
+import PaymentPage from "./pages/PaymentPage";
 import Rank from "./pages/Rank";
 import SideBets from "./pages/SideBets";
 import { useEffect, useState } from "react";
@@ -22,19 +23,19 @@ function App() {
       setOpen(false);
     }
 
-    const getCookieName = () => {
-        if(document.cookie) return JSON.parse(document.cookie?.substring(5));
-    }
+    // const getCookieName = () => {
+    //     if(document.cookie) return JSON.parse(document.cookie?.substring(5));
+    // }
 
-    const [isConnected, setIsConnected] = useState();
+    // const [isConnected, setIsConnected] = useState();
 
-    useEffect(() => {
-        const cookie_value = getCookieName();
-        if(cookie_value) {
-            setIsConnected(true);
-            window.USER_ID = cookie_value["user_id"];
-        } 
-    }, []);
+    // useEffect(() => {
+    //     const cookie_value = getCookieName();
+    //     if(cookie_value) {
+    //         setIsConnected(true);
+    //         window.USER_ID = cookie_value["user_id"];
+    //     } 
+    // }, []);
     
     return (
             <div className="App">
@@ -45,6 +46,7 @@ function App() {
                     <Route path="/flights" element={<Flights/>}></Route> 
                     <Route path="/PassengerDetails" element={<PassengerDetails/>}></Route> 
                     <Route path="/SeatsPicker" element={<SeatsPicker/>}></Route> 
+                    <Route path="/PaymentPage" element={<PaymentPage/>}></Route> 
                 </Routes>
             </div>
     );

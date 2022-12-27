@@ -1,0 +1,36 @@
+.deck_componenet{
+    min-height: 500px;
+    height: 700px;
+    width: 600px;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px;
+
+}
+
+.deck_container{
+    text-align: center;
+}
+.payment_form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+}
+.payment_filed{
+    padding: 5px;
+}
+.row-letter{
+    display: flex;
+    width: 50%;
+    justify-content:center;
+}
+
+.row-letter-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.seat_letter{
+    margin: 10px;
+}

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Link, useParams, useLocation} from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 
 import "../App.css";
 import RepeatableFieldForm from "../components/RepeatableFieldForm/RepeatableFieldForm";
@@ -8,28 +10,37 @@ import TextField from '@mui/material/TextField';
 // import "./RepeatableFieldForm.css";
 import { Divider } from '@mui/material';
 
-function PassangerDetails() {
-
+function PassangerDetails({flights_seats}) {
+  flights_seats  = 7;
+  // passing arguments through link elements.
   const location = useLocation();
-  const fieldsNum = location.state.fieldsNum
-
+  // const fieldsNum = location.state.fieldsNum
+  const [fieldsNum, setFiledsNum] = useState(location.state.fieldsNum)
 
   const [fields, setFields] = useState([]);
   let fieldsArray = [];
-  useEffect(async () => {
-    const addFields =async ()=>{
+  useEffect(() => {
+    const addFields = async ()=>{
       for( let i = 0; i < fieldsNum; i++){
         console.log(i)
-        fieldsArray.push({ id: fields.length + 1, value: '' });
+        fieldsArray.push({ id: i + 1, value: '' });
       }
       setFields(fieldsArray)
     };
     addFields();
-
   }, []);
 
   const params = useParams();
   console.log(params)
+
+  const addPassanger = ()=>{
+    if(fields.length < flights_seats){
+      setFields([...fields, { id: fields.length + 1, value: '' }]);
+    } else {
+      window.alert("cant add anymore");
+    }
+  }
+
 
   const handleChange = (event, index) => {
     // Create a copy of the current fields list
@@ -57,7 +68,7 @@ function PassangerDetails() {
           >
           </TextField>
           <TextField
-            id={`lm-field-${field.id}`}
+            id={`ln-field-${field.id}`}
             value={field.value}
             onChange={(event) => handleChange(event, index)}
             label="Last Name"
@@ -74,13 +85,6 @@ function PassangerDetails() {
           </TextField>
           <TextField
             id={`phone-field-${field.id}`}
-            value={field.value}
-            onChange={(event) => handleChange(event, index)}
-            label="Phone Number"
-          >
-          </TextField>
-          <TextField
-            id={`seat-field-${field.id}`}
             value={field.value}
             onChange={(event) => handleChange(event, index)}
             label="Phone Number"
@@ -104,6 +108,25 @@ function PassangerDetails() {
           </div>
           <div id="passanger_form">
               {formFields}
+              <div className="fields_btn">
+                <Button onClick={addPassanger} variant="outlined">
+                  Add Addition passanger
+                </Button>
+              </div>
+          </div> 
+          <div className="fields_btn">
+          <Link 
+                to={{
+                    pathname: '/SeatsPicker',
+                }}
+                state={{ 'passangers':fields?.length}}
+            >
+            <Button variant="outlined">
+              Select Seats
+            </Button>
+          </Link>
+            
+
           </div>
           <div id="searchBar_container">
           </div>

@@ -7,7 +7,7 @@ import EL_AL_New_Logo from "../../images/logo-of-el-al-israel-airlines-1.svg"
 import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
 import Button from '@mui/material/Button';
 
-export default function FlightCard  ({flightObj}){
+export default function FlightCard  ({flightObj, fieldsValues}){
     const getCarrierLogo = () =>{
         return(
             <div className='carriers_logo_container'>
@@ -58,24 +58,23 @@ export default function FlightCard  ({flightObj}){
                     200$
                 </div>
                 <div className="button_div">
-                    <Button
-                        variant="outlined"
+                    <Link 
+                        to={{
+                            pathname: '/PassengerDetails',
+                        }}
+                        state={{ 'fieldsNum':fieldsValues?.pass_num}}
                     >
-                        <Link 
-                            to={{
-                                pathname: '/PassengerDetails',
-                            }}
-                            state={{ 'fieldsNum':3}}
+                        <Button
+                            variant="outlined"
                         >
-                            SAELECTA BLATH
-                        </Link>
-                        
-                    </Button>
+                
+                                Select this flight                        
+                        </Button>
+                    </Link>
                 </div>
             </div>
         );
     }
-    console.log("YAYAYAYAYAYAAYAYYYAYAYAY")
     return (
         <>
         <div className="flight_card_container" style={{marginBottom: "30px"}}>       

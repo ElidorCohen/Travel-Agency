@@ -19,9 +19,16 @@
     width: 95%;
     margin: 0 auto;
 }
+#flight_details div{
+ margin-right:3px ;
+}
 #search_Filters{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-left: 20px;
+}
+
+#search_button{
+    margin-right: 10px;
 }

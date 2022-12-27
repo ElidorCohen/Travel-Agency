@@ -8,16 +8,12 @@ import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
 import Button from '@mui/material/Button';
 
 export const  pickedSeats = []
-export default function Deck ({ logoa, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
+export default function Deck ({ passengers_number, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
     const takenSeats = ['A3','B1','C2','C13']
-    const [passengerNumber,setPassengerNumber] = useState(()=>{return 3})
+    const [passengerNumber,setPassengerNumber] = useState(()=>{return passengers_number})
     const [seatsComponenets, setSeatsComponenets] = useState([])
     const totalSeatPrice = useRef(0);
-
-    // useCallback(()=> {
-    //     console.log("yayayayay");
-    //     setTotalSeats(3)
-    // }, [seatsComponenets])
+    console.log("passengers_number ", passengers_number)
 
     useEffect(()=>{
         const initSeats = ()=>{
@@ -64,10 +60,6 @@ export default function Deck ({ logoa, logob, teamB, date, info, setModalContent
         })
         totalSeatPrice.current=total
         console.log(total)
-        initSeats();
-        setTimeout(()=>{
-            disableSeats();
-        }, 150)
         if(passengerNumber === 0){
             document.getElementById("payment_button").scrollIntoView({
                 behavior: 'smooth', // Defines the transition animation. default: auto
@@ -75,6 +67,10 @@ export default function Deck ({ logoa, logob, teamB, date, info, setModalContent
                 inline: 'start' // Defines horizontal alignment. default: nearest
             });
         }
+        initSeats();
+        setTimeout(()=>{
+            disableSeats();
+        }, 3000)
     },[passengerNumber])
 
 

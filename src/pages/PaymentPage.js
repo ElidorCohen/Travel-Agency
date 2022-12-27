@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import "../App.css";
 import Header from "../components/Header/Header";
-import Deck from "../components/Deck/Deck";
+import PaymentForm from "../components/PaymentForm/PaymentForm";
 import {Link, useParams, useLocation} from 'react-router-dom';
 
 
-function SeatsPicker() {
+function PaymentPage() {
   const location = useLocation();
-  console.log("location.state ", location.state)
+  console.log(location.state)
 
-  // useEffect(() => {
+  useEffect(() => {
     
-  // }, []);
+  }, []);
   
-  
+
 
   return (
     <>
@@ -22,14 +22,11 @@ function SeatsPicker() {
             <Header/>
           </div>
           <div id="deck_container">
-            <Deck 
-              passengers_number={location.state.passangers}
-              // setPassengerNumber={setPassengerNumber}
-            /> 
+            <PaymentForm/>
           </div>
       </div>
     </>
   )
 }
 
-export default SeatsPicker;
+export default PaymentPage;

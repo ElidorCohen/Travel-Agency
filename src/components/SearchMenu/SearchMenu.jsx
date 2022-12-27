@@ -7,10 +7,18 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
+import Button from '@mui/material/Button';
+import * as controller from "../../controllers/homeController";
+import ButtonGroup from '@mui/material/ButtonGroup';
+import {Link, useParams, useLocation} from 'react-router-dom';
 
-export default function SearchMenu  ({ logoa, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
+
+
+
+export default function SearchMenu  ({ fieldValues, setFieldValues }){
     const [value, setValue] = useState(30);
-
+    const location = useLocation();
+    console.log("REALYY", location);
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
@@ -67,6 +75,19 @@ export default function SearchMenu  ({ logoa, logob, teamB, date, info, setModal
                     <Typography>Departure options</Typography>
                 </AccordionSummary>
             </Accordion>
+            {/* <Button>+</Button> */}
+            <div id="passanger_number">
+                <p>
+                    Passanger Numbers
+                </p>
+                <ButtonGroup size="small" aria-label="small outlined button group">
+                    <Button onClick={()=>{controller.handleCount("up", setFieldValues, fieldValues)}}>+</Button>
+                    {/* {<Button>{fieldValues.pass_num}</Button>} */}
+                    {<Button>{fieldValues.pass_num}</Button>}
+                    <Button onClick={()=>{controller.handleCount("down", setFieldValues, fieldValues)}}>-</Button>
+                </ButtonGroup>
+            </div>
+            {/* <Button>-</Button> */}
         </div>
         </>
     )

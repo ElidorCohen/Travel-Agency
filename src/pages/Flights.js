@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { flagsPaths, games, eighthGames, quarterGames } from '../constants/games';
-import ReactCountryFlag from "react-country-flag";
+import {Link, useParams, useLocation} from 'react-router-dom';
 import "../App.css";
 import FlightCard from "../components/FlightCard/FlightCard";
 import SearchMenu from "../components/SearchMenu/SearchMenu";
@@ -8,7 +7,10 @@ import Header from "../components/Header/Header";
 const axios = require('axios');
 
 function Flights() {
+  const location = useLocation();
   const [flights,setFlights] = useState([]);
+  const [fieldsValues, setFieldValues] = useState(location.state);
+  console.log("location ", fieldsValues)
 
   useEffect(() => {
     const getFlights = async ()=>{
@@ -20,7 +22,7 @@ function Flights() {
       }
     }
     getFlights();
-  }, []);
+  }, [fieldsValues]);
 
   const loadFlights = () => {
     return(
@@ -30,6 +32,7 @@ function Flights() {
           return(  
             <FlightCard
               flightObj={element}
+              fieldsValues={fieldsValues}
             />
           )
         })
@@ -49,7 +52,10 @@ function Flights() {
             {loadFlights()}
           </div>
           <div id="searchBar_container">
-            <SearchMenu/>
+            <SearchMenu
+              fieldValues={fieldsValues}
+              setFieldValues={setFieldValues}
+            />
           </div>
           {/* <div>
             <FlightSearch/>
