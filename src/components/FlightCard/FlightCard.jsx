@@ -24,17 +24,20 @@ export default function FlightCard  ({flightObj1,flightObj2, fieldsValues}){
             <div className='flights_details_container'>
                 {/* {flightTime(moment(new Date(flightObj.departure_time)).format('HH:mm'),flightObj.origin,moment(new Date(flightObj.landing_time)).format('HH:mm'),flightObj.destination)} */}
                 {flightTime(flightObj1.departure_time,flightObj1.origin,flightObj1.landing_time,flightObj1.destination)}
-                {flightTime(flightObj2.departure_time,flightObj2.origin,flightObj2.landing_time,flightObj2.destination)}
+                {flightObj2 ? flightTime(flightObj2.departure_time,flightObj2.origin,flightObj2.landing_time,flightObj2.destination): undefined}
             </div>
         )
     }
 
     const flightTime = (timeA,airportA,timeB,airportB) =>{
+        const timeAInt=parseInt(timeA);
+        const timeBInt=parseInt(timeB);
+
         return(
             <div className='flights_time_container'>
                 {flightTimes(timeA,airportA)}
                 <div className="somthing_in_between">
-                    sdfasdfsadf
+                        Flight Time: {parseInt(timeAInt) > timeBInt ? timeAInt - timeBInt : timeBInt - timeAInt} hr
                 </div>
                 {flightTimes(timeB,airportB)}
             </div>
@@ -58,7 +61,7 @@ export default function FlightCard  ({flightObj1,flightObj2, fieldsValues}){
         return(
             <div className="price_Wrapper">
                 <div className="price">
-                    {flightObj1.price + flightObj2.price}$
+                {flightObj2 ? flightObj1.price + flightObj2.price : flightObj1.price}$
                 </div>
                 <div className="button_div">
                     <Link 

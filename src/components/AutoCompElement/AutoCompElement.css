@@ -1,0 +1,12 @@
+.country{
+    font-size: 18px;
+}
+.airport{
+    font-size: 12px;
+}
+
+.option_wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
