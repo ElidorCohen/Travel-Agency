@@ -8,14 +8,14 @@ import { pickedSeats } from "../Deck/Deck";
 
 export default function SeatsInfo ({ totalSeats, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
     // calculate order price.
-    const calculatePrice = () => {
-        let total;
-        Object.keys(pickedSeats).forEach((ele)=>{
-            total += ele.price;
-        })
-        console.log(total)
-        return total;
-    }
+    // const calculatePrice = () => {
+    //     let total;
+    //     Object.keys(pickedSeats).forEach((ele)=>{
+    //         total += ele.price;
+    //     })
+    //     console.log(total)
+    //     return total;
+    // }
     return (
         <>
         <div className="seats_info_container">

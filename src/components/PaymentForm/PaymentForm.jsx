@@ -1,16 +1,21 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 import "./PaymentForm.css";
 import Header from "../Header/Header";
+import PayPalButton from "../PayPalButton/PayPalButton";
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 export default function PaymentForm ({ passangers_number, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
     const lables=['First Name', 'Last Name', 'ID','Phone number', 'Credit card number','CVV']
     const [fields, setFields] = useState([]);
-    
+
+    const temp=[];
     useEffect(()=>{
         const creatFields = ()=>{
-            const temp=[];
             for(let i=0; i < 6; i++){
                 temp.push({
                     id: i + 1,
@@ -21,13 +26,16 @@ export default function PaymentForm ({ passangers_number, logob, teamB, date, in
             setFields(temp);
         }
         creatFields();
-    })
+    },[])
     const handleChange = (event, index) => {
+        console.log(index)
         // Create a copy of the current fields list
         const updatedFields = [...fields];
     
         // Update the value of the field at the specified index
         updatedFields[index].value = event.target.value;
+        console.log(updatedFields[index].value = event.target.value)
+        console.log(updatedFields)
     
         // Set the updated fields list as the new state
         setFields(updatedFields);
@@ -53,7 +61,7 @@ export default function PaymentForm ({ passangers_number, logob, teamB, date, in
 
     return (
         <>
-        <div className="deck_container deck_componenet">
+        <div className="payment_componenet payment_container">
             <h3 style={{paddingTop:'20px', height:'10%'}}>Payment Page</h3>
             <div className="payment_form " style={{marginBottom: "30px"}}>       
                 {/* <div className='fields_row'>
@@ -79,18 +87,22 @@ export default function PaymentForm ({ passangers_number, logob, teamB, date, in
                 <br/>
                 <h4>1205$</h4>
             </div>
-            <div id="payment_button">
+            <div id="proccess_payment_button">
                 <Button
                     variant="outlined"
                 >
                     Approve Payment     
                 </Button>
-                <Button
+                {/* <Button
                     variant="Filled"
                 >
                     Pay with Paypal    
-                </Button>
-
+                </Button> */}
+            </div>
+            <div >
+                <PayPalButton
+                    amount={120}
+                />
             </div>
         </div>
         </>

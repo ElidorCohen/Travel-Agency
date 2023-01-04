@@ -86,7 +86,7 @@ export default function Deck ({ passengers_number, logob, teamB, date, info, set
                             <div className="seat_letter">C</div>
                         </div>
                         <div className="row-letter">
-                            <div className="seat_letter" onClick={()=>{setPassengerNumber("asdfsadfasdf"); console.log("asdfasdf")}}>D</div>
+                            <div className="seat_letter">D</div>
                             <div className="seat_letter">E</div>
                             <div className="seat_letter">F</div>
                         </div>

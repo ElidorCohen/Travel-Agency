@@ -7,7 +7,9 @@ import EL_AL_New_Logo from "../../images/logo-of-el-al-israel-airlines-1.svg"
 import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
 import Button from '@mui/material/Button';
 
-export default function FlightCard  ({flightObj, fieldsValues}){
+export default function FlightCard  ({flightObj1,flightObj2, fieldsValues}){
+    console.log(flightObj1, flightObj2)
+    // flightObj.price = 200
     const getCarrierLogo = () =>{
         return(
             <div className='carriers_logo_container'>
@@ -20,8 +22,9 @@ export default function FlightCard  ({flightObj, fieldsValues}){
     const flightData = () =>{
         return(
             <div className='flights_details_container'>
-                {flightTime(moment(new Date(flightObj.departure_time)).format('HH:mm'),flightObj.origin,moment(new Date(flightObj.landing_time)).format('HH:mm'),flightObj.destination)}
-                {flightTime("12:00","LAX","08:00","TLV")}
+                {/* {flightTime(moment(new Date(flightObj.departure_time)).format('HH:mm'),flightObj.origin,moment(new Date(flightObj.landing_time)).format('HH:mm'),flightObj.destination)} */}
+                {flightTime(flightObj1.departure_time,flightObj1.origin,flightObj1.landing_time,flightObj1.destination)}
+                {flightTime(flightObj2.departure_time,flightObj2.origin,flightObj2.landing_time,flightObj2.destination)}
             </div>
         )
     }
@@ -55,7 +58,7 @@ export default function FlightCard  ({flightObj, fieldsValues}){
         return(
             <div className="price_Wrapper">
                 <div className="price">
-                    200$
+                    {flightObj1.price + flightObj2.price}$
                 </div>
                 <div className="button_div">
                     <Link 
@@ -68,7 +71,7 @@ export default function FlightCard  ({flightObj, fieldsValues}){
                             variant="outlined"
                         >
                 
-                                Select this flight                        
+                                Select that flight                        
                         </Button>
                     </Link>
                 </div>

@@ -16,7 +16,8 @@ function Flights() {
     const getFlights = async ()=>{
       try{  
         const res  = await axios.get('http://localhost:3001/getFlights');
-        setFlights(res.data.flights);
+        console.log(res.data);
+        setFlights(res.data);
       } catch (e){
         console.warn(e);
       }
@@ -28,10 +29,14 @@ function Flights() {
     return(
       <>
       {
-        flights?.map((element)=>{
+        flights?.map((element,i)=>{
+          if(i+1 > flights.length-2) return;
+          
+          console.log(`index 1 ${i}, index 2 ${i+1}`)
           return(  
             <FlightCard
-              flightObj={element}
+              flightObj1={flights[i]}
+              flightObj2={flights[i+2]}
               fieldsValues={fieldsValues}
             />
           )

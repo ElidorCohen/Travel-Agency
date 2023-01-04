@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export const onChangeFlightType = (event, returnFieldRef)=>{
-    console.log(returnFieldRef)
+    console.log(event.target.value)
     if(event.target.value === '' || event.target.value === 'One-Way' ){
         returnFieldRef.current.to.style.display = 'none';
         returnFieldRef.current.landing_date.style.display = 'none';
@@ -19,7 +19,7 @@ export const handleCount = (action, setFieldValues, fieldValues)=> {
                 ...prev,
                 pass_num:prev.pass_num + 1
             }));
-    }else if (fieldValues.pass_num > 0) {
+    }else if (fieldValues.pass_num > 1) {
         setFieldValues(prev => ({
             ...prev,
             pass_num:prev.pass_num - 1
@@ -27,16 +27,12 @@ export const handleCount = (action, setFieldValues, fieldValues)=> {
     }
 }
 
-export const handleChange = ({evt, name, value=null, setFieldValues}) => {
+export const handleChange = ({e, name, value=null, setFieldValues}) => {
+    console.log(e.target, value)
     if(!value)
-        value = evt.target.value;;
+        value = e.target.value;
     setFieldValues(prev => ({
-      ...prev,
-      [name]: value,
+        ...prev,
+        [name]: value,
     }));
-  }
-// export const search_flight = (values) => {
-//     console.log(values)
-
-//     // window.location.pathname = '/Flights'
-// } 
+}

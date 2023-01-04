@@ -1,6 +1,6 @@
-.deck_componenet{
+.payment_componenet{
     min-height: 500px;
-    height: 700px;
+    height: 100%;
     width: 600px;
     background-color: white;
     margin: 0 auto;
@@ -8,8 +8,10 @@
     box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px;
 
 }
-
-.deck_container{
+#proccess_payment_button{
+    padding-top: 10px;
+}
+.payment_container{
     text-align: center;
 }
 .payment_form{

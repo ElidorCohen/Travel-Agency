@@ -27,7 +27,7 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
     const  [fieldValues, setFieldValues] = useState({
         "depart_date":moment('2022-08-18T21:11:54'),
         "return_date":moment('2022-08-18T21:11:54'),
-        "pass_num":0
+        "pass_num":1
     })
     
 
@@ -81,7 +81,7 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                         // value={(ele) => {formRef.current.flight_type = ele}}
-                        onChange={(e)=>{
+                        onChange={(e, value)=>{
                             controller.onChangeFlightType(e, formRef)
                             // handleChange(e, "flight_type")
                             controller.handleChange({e:e,name:"flight_type", value:value, setFieldValues: setFieldValues});
