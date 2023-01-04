@@ -18,7 +18,7 @@
 
 .flight_wrapper{
     display: grid;
-    min-height: 100%;
+    min-height: 680px;
     grid-template-areas:
       'header header header header header header'
       'menu main main main main main'
@@ -28,6 +28,7 @@
     background-color: #2196F3;
     padding: 10px;
     height: 100%;
+
 }
 #searchBar_container{
   grid-area: menu;
@@ -38,6 +39,7 @@
 #flight_result_container{
   grid-area: main;
   height: 100%;
+  min-height: 1000px;
 }
 
 #passanger_form{

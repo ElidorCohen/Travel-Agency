@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const onChangeFlightType = (event, returnFieldRef)=>{
     console.log(event.target.value)
     if(event.target.value === '' || event.target.value === 'One-Way' ){
-        returnFieldRef.current.to.style.display = 'none';
+        // returnFieldRef.current.to.style.display = 'none';
         returnFieldRef.current.landing_date.style.display = 'none';
     }
     else{
@@ -27,8 +27,8 @@ export const handleCount = (action, setFieldValues, fieldValues)=> {
     }
 }
 
-export const handleChange = ({e, name, value=null, setFieldValues}) => {
-    console.log(e.target, value)
+export const handleChange = ({e, name, value=undefined, setFieldValues}) => {
+    console.log("VALUE ",  value)
     if(!value)
         value = e.target.value;
     setFieldValues(prev => ({

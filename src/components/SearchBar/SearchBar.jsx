@@ -16,17 +16,21 @@ import ReactCountryFlag from "react-country-flag"
 import { BiBarChart } from "react-icons/bi";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import * as controller from "../../controllers/homeController";
+import * as states from "../../constants/countries"
+import AutoCompElement from "../AutoCompElement/AutoCompElement";
 import { act } from "react-dom/test-utils";
+import Box from '@mui/material/Box';
 
 
+console.log(states);
 export default function SearchBar ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) {
     // parse to date only .format('DD-MM-YYYY');
     const [value, setValue] = useState(
-        moment('2022-08-18T21:11:54'),
+        moment(new Date()),
     );
     const  [fieldValues, setFieldValues] = useState({
-        "depart_date":moment('2022-08-18T21:11:54'),
-        "return_date":moment('2022-08-18T21:11:54'),
+        "depart_date":moment(new Date()),
+        "return_date":moment(new Date()),
         "pass_num":1
     })
     
@@ -52,7 +56,6 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
             'to':formRef.current.to,
             'depart_date':formRef.current.depart_date.value,
             'return_date':formRef.current.landing_date.value,
-            'direct':""
         })
 
     }
@@ -95,7 +98,15 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                     <Autocomplete
                         disablePortal
                         id="from"
-                        // options={top100Films}
+                        options={states.states}
+                        renderOption={(props, option)=>(
+                            <Box {...props}>
+                                <AutoCompElement
+                                    name={option.label}
+                                    code={option.code}
+                                />
+                            </Box>
+                        )}
                         // onChange={(e, value)=>{formRef.current.from = value}} // get value
                         // onChange={(e, value)=>{handleChange(e, "from")}}
                         onChange={(e, value)=>{controller.handleChange({e:e,name:"from", value:value, setFieldValues: setFieldValues});}}
@@ -106,7 +117,15 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        options={['top100Films','yes','no']}
+                        options={states.states}
+                        renderOption={(props, option)=>(
+                            <Box {...props}>
+                                <AutoCompElement
+                                    name={option.label}
+                                    code={option.code}
+                                />
+                            </Box>
+                        )}
                         sx={{ width: 300 }}
                         ref={(ele) => {formRef.current.to = ele}}
                         onChange={(e, value)=>{controller.handleChange({e:e,name:"to", value:value, setFieldValues: setFieldValues});}}
@@ -120,7 +139,7 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             value={fieldValues.depart_date}
                             // onChange={handleChange}
                             onChange={(value, e)=>{
-                                console.log(value)
+                                // console.log(value)
                                 controller.handleChange({e:e,name:"depart_date", value:value, setFieldValues});
                             }}
                             inputRef={(ele) => {formRef.current.depart_date = ele}}
@@ -148,13 +167,6 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                 </div>
                 <div id="search_Filters">
                     <div>
-                        <FormControlLabel 
-                                // onChange={(e, value)=>{handleChange(e, "direct_only")}} 
-                                onChange={(e, value)=>{controller.handleChange({e:e,name:"direct_only", value:value, setFieldValues: setFieldValues});}} 
-                                ref={(ele) => {formRef.current.direct = ele}} 
-                                control={<Checkbox />} 
-                                label="Direct Flights Only" 
-                        />
                     </div>
                     <Link 
                         to={{
@@ -166,7 +178,6 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             depart_date:fieldValues.depart_date.toDate(),
                             return_date:fieldValues.return_date.toDate(),
                             flight_type:fieldValues.flight_type,
-                            direct:fieldValues.direct,
                             pass_num:fieldValues.pass_num
                         }}
                         // onClick={controller.setOnCookie.bind(fieldValues)}
