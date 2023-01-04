@@ -1,0 +1,48 @@
+.center_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper {
+    border: 1px solid black;
+    width: 400px;
+    height: 550px;
+  }
+  .spacesButtons{
+    margin: 0px 0px 0px 20px;
+  }
+  .buttons_wrapper{
+    margin:  35px 0px 0px 46px;
+  }
+  .CommitChangesBtn1{
+    margin: 20px 0px 8px 120px;
+  }
+  .CommitChangesBtn2{
+    margin: 20px 0px 8px 120px;
+  }
+  .CommitChangesBtn3{
+    margin: 20px 0px 8px 120px;
+  }
+  .form-wrapper{
+    margin: 30px 0px 0px 35px;
+  }
+  .textfieldform label,
+.textfieldform input {
+  margin: 5px 0; 
+  }
+.add-form-wrapper{
+    margin: 35px 0px 0px 35px;
+}
+.add-textfield-form label,
+.add-textfield-form input {
+  margin: 5px 0; 
+  }
+
+  .remove-form-wrapper{
+    margin: 50px 0px 0px 35px;
+  }

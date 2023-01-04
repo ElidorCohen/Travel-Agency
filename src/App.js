@@ -10,6 +10,7 @@ import Rank from "./pages/Rank";
 import SideBets from "./pages/SideBets";
 import { useEffect, useState } from "react";
 import { Switch } from "@mui/material";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
     const [open, setOpen] = useState(false);
@@ -47,6 +48,7 @@ function App() {
                     <Route path="/PassengerDetails" element={<PassengerDetails/>}></Route> 
                     <Route path="/SeatsPicker" element={<SeatsPicker/>}></Route> 
                     <Route path="/PaymentPage" element={<PaymentPage/>}></Route> 
+                    <Route path="/AdminPage" element={<AdminPage/>}></Route> 
                 </Routes>
             </div>
     );
