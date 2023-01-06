@@ -8,7 +8,7 @@ import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
 import Button from '@mui/material/Button';
 
 export const  pickedSeats = []
-export default function Deck ({ passengers_number, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
+export default function Deck ({ passengers_number, flight_info, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
     const takenSeats = ['A3','B1','C2','C13']
     const [passengerNumber,setPassengerNumber] = useState(()=>{return passengers_number})
     const [seatsComponenets, setSeatsComponenets] = useState([])
@@ -24,7 +24,6 @@ export default function Deck ({ passengers_number, logob, teamB, date, info, set
                     case 5:
                         rowPrice = 200;
                         break;
-                        
                     case 9:
                         rowPrice = 400;
                         break;
@@ -112,6 +111,7 @@ export default function Deck ({ passengers_number, logob, teamB, date, info, set
                     {seatsComponenets}
                     <SeatsInfo
                         totalSeats={totalSeatPrice.current}
+                        flight_info={flight_info}
                     />
                     {/* {getCarrierLogo()}
                     {flightData()}

@@ -8,7 +8,9 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function PaymentPage() {
   const location = useLocation();
-  console.log(location.state)
+  const flight_price = location.state.flight_info.flight.price
+  const seats_price = location.state.seats_price
+  console.log(flight_price , seats_price )
   const initialOptions = {
     "client-id": "Absxi56Eg7HVYWnXOfECoECywjwa-LN1ZJ1jBSvyfHG0XCDJsZzWvPwVHrcKSLnporBUSbNsR05MY1aM",
     currency: "USD",
@@ -28,7 +30,9 @@ function PaymentPage() {
           </div>
           <div id="deck_container">
             <PayPalScriptProvider options={initialOptions}>
-              <PaymentForm/>
+              <PaymentForm
+                price={parseInt(flight_price) + parseInt(seats_price)}
+              />
             </PayPalScriptProvider>
           </div>
       </div>

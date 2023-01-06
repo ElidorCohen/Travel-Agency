@@ -9,7 +9,7 @@ import PayPalButton from "../PayPalButton/PayPalButton";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export default function PaymentForm ({ passangers_number, logob, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
+export default function PaymentForm (props){
     const lables=['First Name', 'Last Name', 'ID','Phone number', 'Credit card number','CVV']
     const [fields, setFields] = useState([]);
 
@@ -85,7 +85,7 @@ export default function PaymentForm ({ passangers_number, logob, teamB, date, in
             <div>
                 <h3>Order Total</h3>
                 <br/>
-                <h4>1205$</h4>
+                <h4>{props.price} $</h4>
             </div>
             <div id="proccess_payment_button">
                 <Button

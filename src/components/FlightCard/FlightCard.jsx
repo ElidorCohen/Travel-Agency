@@ -58,17 +58,23 @@ export default function FlightCard  ({flightObj1,flightObj2, fieldsValues}){
     }
 
     const price = () =>{
+        const flight_price = flightObj2 ? flightObj1.price + flightObj2.price : flightObj1.price
         return(
             <div className="price_Wrapper">
                 <div className="price">
-                {flightObj2 ? flightObj1.price + flightObj2.price : flightObj1.price}$
+                {flight_price}$
                 </div>
                 <div className="button_div">
                     <Link 
                         to={{
                             pathname: '/PassengerDetails',
                         }}
-                        state={{ 'fieldsNum':fieldsValues?.pass_num}}
+                        state={{ 
+                            'fieldsNum':fieldsValues?.pass_num,
+                            'flight_id':flightObj2 ? {'id1':flightObj1.id,'id2': flightObj2.id } : {'id1':flightObj1.id },
+                            'price':flight_price,
+                            'seats_left':flightObj2 && flightObj2.seats_left < flightObj1.seats_left ? flightObj2.seats_left : flightObj1.seats_left
+                        }}
                     >
                         <Button
                             variant="outlined"

@@ -23,6 +23,7 @@ function SeatsPicker() {
           </div>
           <div id="deck_container">
             <Deck 
+              flight_info={location.state}
               passengers_number={location.state.passangers}
               // setPassengerNumber={setPassengerNumber}
             /> 

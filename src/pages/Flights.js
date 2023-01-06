@@ -6,7 +6,7 @@ import SearchMenu from "../components/SearchMenu/SearchMenu";
 import Header from "../components/Header/Header";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-
+import moment from 'moment';
 
 const axios = require('axios');
 
@@ -41,8 +41,10 @@ function Flights() {
           );
         })
         const FilteredByDate = FilteredByPassangers.filter(element => {
+          console.log( "yayayayay", moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.departure_date).format("DD/MM/YYYY"));
+          console.log( "WIWIWIWIWI",  moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.landing_date).format("DD/MM/YYYY"));
           return (
-            element.departure_date == fieldsValues.date || element.landing_date == fieldsValues.date
+            moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.departure_date).format("DD/MM/YYYY") || moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.landing_date).format("DD/MM/YYYY")
           );
         })
         // if (ya.length % 2 != 0 && ya.length == 2){

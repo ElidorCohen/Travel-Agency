@@ -16,16 +16,41 @@ function PassangerDetails({flights_seats}) {
   const location = useLocation();
   // const fieldsNum = location.state.fieldsNum
   const [fieldsNum, setFiledsNum] = useState(location.state.fieldsNum)
+  const [fields, setFields] = useState([{ field1: '', field2: '', field3: '', field4: '' }]);
 
-  const [fields, setFields] = useState([]);
+  const addBlock = () => {
+    if(fields.length < location.state.seats_left ){
+        setFields((prevFields) => [...prevFields, { field1: '', field2: '', field3: '', field4: '' }]);
+        return;
+    }
+    alert("cant add anymore");
+  };
+
+  const removeBlock = (index) => {
+    setFields((prevFields) => {
+      const newFields = [...prevFields];
+      newFields.splice(index, 1);
+      return newFields;
+    });
+  };
+
+  const handleChange = (e, index) => {
+    const { name, value } = e.target;
+    setFields((prevFields) => {
+      const newFields = [...prevFields];
+      newFields[index][name] = value;
+      return newFields;
+    });
+  };
+
+  // const [fields, setFields] = useState([]);
   let fieldsArray = [];
   useEffect(() => {
     const addFields = async ()=>{
-      for( let i = 0; i < fieldsNum; i++){
-        console.log(i)
-        fieldsArray.push({ id: i + 1, value: '' });
-      }
-      setFields(fieldsArray)
+        for( let i = 0; i < fieldsNum; i++){
+          fieldsArray.push({ field1: '', field2: '', field3: '', field4: '' });
+        }
+        setFields(fieldsArray)
     };
     addFields();
   }, []);
@@ -33,60 +58,64 @@ function PassangerDetails({flights_seats}) {
   const params = useParams();
   console.log(params)
 
-  const addPassanger = ()=>{
-    if(fields.length < flights_seats){
-      setFields([...fields, { id: fields.length + 1, value: '' }]);
-    } else {
-      window.alert("cant add anymore");
-    }
-  }
+  // const addPassanger = ()=>{
+  //   if(fields.length < flights_seats){
+  //     setFields([...fields, { id: fields.length + 1, value: '' }]);
+  //   } else {
+  //     window.alert("cant add anymore");
+  //   }
+  // }
 
 
-  const handleChange = (event, index) => {
-    // Create a copy of the current fields list
-    const updatedFields = [...fields];
+  // const handleChange = (event, index) => {
+  //   // Create a copy of the current fields list
+  //   const updatedFields = [...fields];
 
-    // Update the value of the field at the specified index
-    updatedFields[index].value = event.target.value;
+  //   // Update the value of the field at the specified index
+  //   updatedFields[index].value = event.target.value;
 
-    // Set the updated fields list as the new state
-    setFields(updatedFields);
-  };
+  //   // Set the updated fields list as the new state
+  //   setFields(updatedFields);
+  // };
 
   const formFields = fields.map((field, index) => (
     <>
       <div className="passnger_fields_label">
-        <label htmlFor={`field-${field.id}`}>Passenger {field.id}</label>
+        <label htmlFor={`field-${field.id}`}>Passenger {index+1}</label>
       </div>
       <div className="passenger_filed" key={field.id}>
         <div className='fields_row'>
           <TextField
-            id={`name-field-${field.id}`}
-            value={field.value}
-            onChange={(event) => handleChange(event, index)}
+            type="text"
+            name="field1"
+            value={field.field1}
+            onChange={(e) => handleChange(e, index)}
             label="First Name"
           >
           </TextField>
           <TextField
-            id={`ln-field-${field.id}`}
-            value={field.value}
-            onChange={(event) => handleChange(event, index)}
+           type="text"
+           name="field2"
+           value={field.field2}
+           onChange={(e) => handleChange(e, index)}
             label="Last Name"
           >
           </TextField>
         </div>
         <div className='fields_row'>
           <TextField
-            id={`passport-field-${field.id}`}
-            value={field.value}
-            onChange={(event) => handleChange(event, index)}
+            type="text"
+            name="field3"
+            value={field.field3}
+            onChange={(e) => handleChange(e, index)}
             label="Passport number"
           >
           </TextField>
           <TextField
-            id={`phone-field-${field.id}`}
-            value={field.value}
-            onChange={(event) => handleChange(event, index)}
+            type="text"
+            name="field4"
+            value={field.field4}
+            onChange={(e) => handleChange(e, index)}
             label="Phone Number"
           >
           </TextField>
@@ -109,8 +138,11 @@ function PassangerDetails({flights_seats}) {
           <div id="passanger_form">
               {formFields}
               <div className="fields_btn">
-                <Button onClick={addPassanger} variant="outlined">
+                <Button onClick={addBlock} variant="outlined">
                   Add Addition passanger
+                </Button>
+                <Button onClick={removeBlock} variant="outlined">
+                  Remove Passanger
                 </Button>
               </div>
           </div> 
@@ -119,7 +151,11 @@ function PassangerDetails({flights_seats}) {
                 to={{
                     pathname: '/SeatsPicker',
                 }}
-                state={{ 'passangers':fields?.length}}
+                state={{ 
+                    'passangers':fields?.length,
+                    'flight':location.state,
+                    'passangers_fields':fields
+                }}
             >
             <Button variant="outlined">
               Select Seats
