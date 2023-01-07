@@ -51,10 +51,6 @@ const AdminPage = () => {
            <div className="add-form-wrapper">
            <form className='add-textfield-form'>
              <div>
-               <label>Flight ID:</label>
-               <input type="text" name="textbox19" />
-             </div>
-             <div>
                <label>Carrier:</label>
                <input type="text" name="textbox22" />
              </div>
@@ -156,7 +152,7 @@ const AdminPage = () => {
               </div>
               <div>
                 <label>Date:</label>
-                <input type="text" name="textbox11" />
+                <input type="text" onChange={(value)=>{handleChange}}name="textbox11" />
               </div>
               <button className='CommitChangesBtn1'>Commit Changes</button>
             </form>

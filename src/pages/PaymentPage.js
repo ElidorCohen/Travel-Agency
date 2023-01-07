@@ -11,6 +11,7 @@ function PaymentPage() {
   const flight_price = location.state.flight_info.flight.price
   const seats_price = location.state.seats_price
   console.log(flight_price , seats_price )
+  console.log(location)
   const initialOptions = {
     "client-id": "Absxi56Eg7HVYWnXOfECoECywjwa-LN1ZJ1jBSvyfHG0XCDJsZzWvPwVHrcKSLnporBUSbNsR05MY1aM",
     currency: "USD",
@@ -31,6 +32,7 @@ function PaymentPage() {
           <div id="deck_container">
             <PayPalScriptProvider options={initialOptions}>
               <PaymentForm
+                flight_info={location.state}
                 price={parseInt(flight_price) + parseInt(seats_price)}
               />
             </PayPalScriptProvider>

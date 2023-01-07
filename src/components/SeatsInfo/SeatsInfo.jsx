@@ -6,7 +6,7 @@ import EL_AL_New_Logo from "../../images/logo-of-el-al-israel-airlines-1.svg"
 import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
 import { pickedSeats } from "../Deck/Deck";
 
-export default function SeatsInfo ({ totalSeats, flight_info, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
+export default function SeatsInfo ({ totalSeats, flight_info, pickedSeats, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
     // calculate order price.
     // const calculatePrice = () => {
     //     let total;
@@ -34,7 +34,8 @@ export default function SeatsInfo ({ totalSeats, flight_info, teamB, date, info,
                                 }}
                                 state={{ 
                                     'flight_info':flight_info,
-                                    'seats_price':totalSeats
+                                    'seats_price':totalSeats,
+                                    'pickedSeats':pickedSeats
                                 }}
                             >
                                 Procced to payment

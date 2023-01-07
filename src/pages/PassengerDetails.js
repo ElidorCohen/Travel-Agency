@@ -56,7 +56,7 @@ function PassangerDetails({flights_seats}) {
   }, []);
 
   const params = useParams();
-  console.log(params)
+  console.log(location.state)
 
   // const addPassanger = ()=>{
   //   if(fields.length < flights_seats){

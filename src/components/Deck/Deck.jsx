@@ -2,20 +2,24 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import "./Deck.css";
 import Seats from "../Seats/Seats";
 import SeatsInfo from "../SeatsInfo/SeatsInfo";
-
-import EL_AL_New_Logo from "../../images/logo-of-el-al-israel-airlines-1.svg"
-import KLM_LOGO from "../../images/KLM-Logo.wine.svg"
-import Button from '@mui/material/Button';
+const axios = require('axios')
 
 export const  pickedSeats = []
 export default function Deck ({ passengers_number, flight_info, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }){
-    const takenSeats = ['A3','B1','C2','C13']
+    const takenSeats = []
     const [passengerNumber,setPassengerNumber] = useState(()=>{return passengers_number})
     const [seatsComponenets, setSeatsComponenets] = useState([])
     const totalSeatPrice = useRef(0);
     console.log("passengers_number ", passengers_number)
 
     useEffect(()=>{
+        const getTakenSeat = async () => {
+            const res  = await axios.get('http://localhost:3001/getTakenSeats', {params:{'flightId':flight_info.flight.flight_id.id1}});
+            res.data.map(element => {
+                takenSeats.push(element.seat)
+            })
+            console.log('taken_seats ', takenSeats);
+        }
         const initSeats = ()=>{
             let rowPrice = 100;
             let temp =[];
@@ -67,9 +71,11 @@ export default function Deck ({ passengers_number, flight_info, teamB, date, inf
             });
         }
         initSeats();
+        getTakenSeat();
+        console.log("WATSETASDT")
         setTimeout(()=>{
             disableSeats();
-        }, 3000)
+        }, 150)
     },[passengerNumber])
 
 
@@ -112,6 +118,7 @@ export default function Deck ({ passengers_number, flight_info, teamB, date, inf
                     <SeatsInfo
                         totalSeats={totalSeatPrice.current}
                         flight_info={flight_info}
+                        pickedSeats={pickedSeats}
                     />
                     {/* {getCarrierLogo()}
                     {flightData()}

@@ -41,15 +41,10 @@ function Flights() {
           );
         })
         const FilteredByDate = FilteredByPassangers.filter(element => {
-          console.log( "yayayayay", moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.departure_date).format("DD/MM/YYYY"));
-          console.log( "WIWIWIWIWI",  moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.landing_date).format("DD/MM/YYYY"));
           return (
             moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.departure_date).format("DD/MM/YYYY") || moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.landing_date).format("DD/MM/YYYY")
           );
         })
-        // if (ya.length % 2 != 0 && ya.length == 2){
-        //   alert("No round trips avaliable for those search arguments!");
-        // } else if (ya.length % 2 == 1) ya.pop();
         setFlights(FilteredByPassangers);
         setIsLoading(false);
       } catch (e){
@@ -65,6 +60,7 @@ function Flights() {
         return(
           <>
           {
+            // mapping flights into object for more flexiable design as cards.
             flights?.map((element,i)=>{
               console.log(flights.length)
               if(fieldsValues.flight_type == "One-Way"){
@@ -77,16 +73,14 @@ function Flights() {
                 )
               }
               if(i+2 > flights.length) return;
-              
-              console.log(`index 1 ${i}, index 2 ${i+1}`)
-              return(  
-                <FlightCard
-                  flightObj1={flights[i]}
-                  flightObj2={flights[i+1]}
-                  fieldsValues={fieldsValues}
-                />
-              )
-            })
+                return(  
+                  <FlightCard
+                    flightObj1={flights[i]}
+                    flightObj2={flights[i+1]}
+                    fieldsValues={fieldsValues}
+                  />
+                )
+              })
           }
           </>
         );
@@ -115,9 +109,6 @@ function Flights() {
               setFieldValues={setFieldValues}
             />
           </div>
-          {/* <div>
-            <FlightSearch/>
-          </div> */}
       </div>
      
     </>

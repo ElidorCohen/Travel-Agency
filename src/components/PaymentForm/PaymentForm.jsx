@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-
+import * as controller from "../../controllers/paymentPageController";
 import "./PaymentForm.css";
 import Header from "../Header/Header";
 import PayPalButton from "../PayPalButton/PayPalButton";
-
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
@@ -90,6 +89,7 @@ export default function PaymentForm (props){
             <div id="proccess_payment_button">
                 <Button
                     variant="outlined"
+                    onClick={()=>{controller.submitPayment(props,fields)}}
                 >
                     Approve Payment     
                 </Button>
