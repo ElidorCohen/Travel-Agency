@@ -13,6 +13,8 @@ export default function Deck ({ passengers_number, flight_info, teamB, date, inf
     console.log("passengers_number ", passengers_number)
 
     useEffect(()=>{
+        console.log("flight_info" ,flight_info)
+
         const getTakenSeat = async () => {
             const res  = await axios.get('http://localhost:3001/getTakenSeats', {params:{'flightId':flight_info.flight.flight_id.id1}});
             res.data.map(element => {

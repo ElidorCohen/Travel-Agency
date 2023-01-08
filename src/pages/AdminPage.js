@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import "./AdminPage.css";
 import Header from "../components/Header/Header";
-
+import EditFlight from "../components/EditFlight/EditFlight"
+import DeleteFlight from "../components/DeleteFlight/DeleteFlight"
 
 
 
@@ -94,72 +95,14 @@ const AdminPage = () => {
            </form>
          </div>
                )}
-          
-          {removeFormOpen && (
-            <div className='remove-form-wrapper'>
-                <form className='remove-textfield-form'>
-                <div>
-                <label>Flight ID:</label>
-                <input type="text" name="textbox15" />
+          <DeleteFlight
+              show={removeFormOpen}
+          />
+          <EditFlight
+              show={editFormOpen}
+          />                
               </div>
-              <button className='CommitChangesBtn2'>Commit Changes</button>
-                </form>
-            </div>
-                )}                   
-            
-          {editFormOpen && (
-          <div className="form-wrapper">
-            <form className='textfieldform'>
-              <div>
-                <label>Flight ID:</label>
-                <input type="text" name="textbox1" />
-              </div>
-              <div>
-                <label>Carrier:</label>
-                <input type="text" name="textbox2" />
-              </div>
-              <div>
-                <label>Destination:</label>
-                <input type="text" name="textbox3" />
-              </div>
-              <div>
-                <label>Origin:</label>
-                <input type="text" name="textbox4" />
-              </div>
-              <div>
-                <label>Origin Country:</label>
-                <input type="text" name="textbox5" />
-              </div>
-              <div>
-                <label>Destination Country:</label>
-                <input type="text" name="textbox6" />
-              </div>
-              <div>
-                <label>Departure Time:</label>
-                <input type="text" name="textbox7" />
-              </div>
-              <div>
-                <label>Landing Time:</label>
-                <input type="text" name="textbox8" />
-              </div>
-              <div>
-                <label>Seats Quantity:</label>
-                <input type="text" name="textbox9" />
-              </div>
-              <div>
-                <label>Price:</label>
-                <input type="text" name="textbox10" />
-              </div>
-              <div>
-                <label>Date:</label>
-                <input type="text" onChange={(value)=>{}}name="textbox11" />
-              </div>
-              <button className='CommitChangesBtn1'>Commit Changes</button>
-            </form>
           </div>
-                )}                
-                </div>
-            </div>
           )}
         </div>
       </div>

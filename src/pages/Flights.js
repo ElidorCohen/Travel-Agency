@@ -24,7 +24,6 @@ function Flights() {
       setIsLoading(true);
       try{  
         const res  = await axios.get('http://localhost:3001/getFlights');
-        console.log("flights " ,res.data);
         const FilteredByDestination =  res.data.filter(element => {
           return (
             (element.origin === fieldsValues.from.code && element.destination === fieldsValues.to.code) || (fieldsValues?.flight_type === "Round" ? (element.destination === fieldsValues.from.code && element.origin === fieldsValues.to.code) : false)
