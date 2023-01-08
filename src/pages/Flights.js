@@ -18,10 +18,6 @@ function Flights() {
   console.log("location ", fieldsValues)
 
   useEffect(() => {
-    // Need to filter by Destination.
-    // Need to filter By Origin.
-    // Need to filter By available Seats.
-    // Need to filter By One Way of Two Way.
     // Need to filter by date.
     const filteredFlights = [];
     const getFlights = async ()=>{ 
@@ -31,7 +27,7 @@ function Flights() {
         console.log("flights " ,res.data);
         const FilteredByDestination =  res.data.filter(element => {
           return (
-            (element.origin == fieldsValues.from.code && element.destination == fieldsValues.to.code) || (fieldsValues?.flight_type == "Round" ? (element.destination == fieldsValues.from.code && element.origin == fieldsValues.to.code) : false)
+            (element.origin === fieldsValues.from.code && element.destination === fieldsValues.to.code) || (fieldsValues?.flight_type === "Round" ? (element.destination === fieldsValues.from.code && element.origin === fieldsValues.to.code) : false)
           );
         })
         console.log("FilteredByDestination ", FilteredByDestination);
@@ -40,12 +36,18 @@ function Flights() {
             (element.seats_left >= fieldsValues.pass_num)
           );
         })
-        const FilteredByDate = FilteredByPassangers.filter(element => {
+        const FilteredByDate = FilteredByPassangers.filter(element => { 
+          console.log("1 ", moment(element?.departure_date).format("DD/MM/YYYY") )
+          console.log("2 ", moment(fieldsValues.date).format("DD/MM/YYYY"));
+          console.log("3 ", moment(element?.landing_date).format("DD/MM/YYYY"))
           return (
-            moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.departure_date).format("DD/MM/YYYY") || moment(element.date).format("DD/MM/YYYY") == moment(fieldsValues.landing_date).format("DD/MM/YYYY")
+            moment(element?.departure_date).format("DD/MM/YYYY") === moment(fieldsValues.date).format("DD/MM/YYYY") || moment(element?.landing_date).format("DD/MM/YYYY") === moment(fieldsValues.date).format("DD/MM/YYYY")
           );
         })
-        setFlights(FilteredByPassangers);
+        // if (ya.length % 2 != 0 && ya.length == 2){
+        //   alert("No round trips avaliable for those search arguments!");
+        // } else if (ya.length % 2 == 1) ya.pop();
+        setFlights(FilteredByDate);
         setIsLoading(false);
       } catch (e){
         console.warn(e);

@@ -152,7 +152,7 @@ const AdminPage = () => {
               </div>
               <div>
                 <label>Date:</label>
-                <input type="text" onChange={(value)=>{handleChange}}name="textbox11" />
+                <input type="text" onChange={(value)=>{}}name="textbox11" />
               </div>
               <button className='CommitChangesBtn1'>Commit Changes</button>
             </form>

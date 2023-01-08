@@ -57,7 +57,6 @@ export const states = [
     {"label": "Dubai, United Arab Emirates", "code": "DXB" },     
     {"label": "Frankfurt, Germany", "code": "FRA"  },      
     {"label": "Hong Kong, China", "code": "HKG" },     
-    {"label": "Istanbul, Turkey", "code": "IST" },     
     {"label": "Jakarta, Indonesia", "code": "CGK" },     
     {"label": "Johannesburg, South Africa", "code": "JNB" },     
     {"label": "Kuala Lumpur, Malaysia", "code": "KUL" },     
