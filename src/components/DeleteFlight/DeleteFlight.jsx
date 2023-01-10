@@ -1,28 +1,33 @@
 import React, { useEffect, useState } from 'react';
 // import "./AdminPage.css";
 import Table from "../Table/Table";
-
+import axios from 'axios';
 
 
 
 export default function EditFlight (props) {
-    const [textBox, setTextBox] = useState('')
-    const handleTextBox = (value)=>{
-        setTextBox(value);
+    const [flightId, setflightId] = useState('')
+    const handleFlightId = (value)=>{
+        setflightId(value);
     }
  
     const setDeleteData = (row) => {
-        setTextBox(row.id);
+        setflightId(row.id);
     }
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         console.log("yayayay")
-        e.preventDefault();
+        // e.preventDefault();
         const formFields = {
-            textBox,
+            flightId,
         }
         console.log(formFields);
+        const res  = await axios.post('http://localhost:3001/deleteFlight',{formFields});
     }
+
+    
+
+
     if(props.show){
         return (
             <>
@@ -35,7 +40,7 @@ export default function EditFlight (props) {
                 <form className='remove-textfield-form'>
                     <div>
                         <label>Flight ID:</label>
-                        <input onChange={(value)=>{handleTextBox(value)}} value={textBox} type="text" name="textbox15" />
+                        <input onChange={(value)=>{handleFlightId(value)}} value={flightId} type="text" name="textbox15" />
                     </div>
                     <button  onClick={(e)=> submitForm(e)} className='CommitChangesBtn1'>Commit Changes</button>
                 </form>

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-export default function EditFlight (props) {
+export default function AddFlight (props) {
     const [flightId, setFlightId] = useState('')
     const [destination, setDestinations] = useState('')
     const [carrier, setCarrier] = useState('')
@@ -78,18 +78,13 @@ export default function EditFlight (props) {
             price,
             date
         }
-        const res  = await axios.post('http://localhost:3001/editFlight',{formFields});
+        const res  = await axios.post('http://localhost:3001/insertFlight',{formFields});
         console.log(res);
     }
 
     if(props.show){
         return (
             <>
-            <div style={{textAlign:"center"}}>
-                <Table
-                    setRowsData={setEditData}
-                />
-            </div>
             <div className="form-wrapper">
                 <form className='textfieldform'>
                 <div>

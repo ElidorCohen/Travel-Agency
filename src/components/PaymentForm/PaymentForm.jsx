@@ -7,11 +7,15 @@ import Header from "../Header/Header";
 import PayPalButton from "../PayPalButton/PayPalButton";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 export default function PaymentForm (props){
     const lables=['First Name', 'Last Name', 'ID','Phone number', 'Credit card number','CVV']
     const [fields, setFields] = useState([]);
-
+    const [checked, setChecked] = useState('');
+    const [password, setPassword] = useState('');
     const temp=[];
     useEffect(()=>{
         const creatFields = ()=>{
@@ -26,20 +30,29 @@ export default function PaymentForm (props){
         }
         creatFields();
     },[])
-    const handleChange = (event, index) => {
+    const handleChange = (event, index,creditcard=false, value=null) => {
         console.log(index)
         // Create a copy of the current fields list
         const updatedFields = [...fields];
-    
+        
         // Update the value of the field at the specified index
-        updatedFields[index].value = event.target.value;
-        console.log(updatedFields[index].value = event.target.value)
+        if (creditcard) updatedFields[index].value = value;
+        else updatedFields[index].value = event.target.value;
+        // console.log(updatedFields[index].value = event.target.value)
         console.log(updatedFields)
     
         // Set the updated fields list as the new state
         setFields(updatedFields);
       };
     
+    const handleChecked=(event)=>{
+        setChecked(event.target.checked);
+    }
+    const handlePassword=(event)=>{
+        setPassword(event.target.value);
+        fields.password=password;
+    }
+
     const formFields = fields.map((field, index) => (
         <>
             <div className="payment_filed" key={field.id}>
@@ -56,7 +69,8 @@ export default function PaymentForm (props){
         </>
     ));
       
-    
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
 
     return (
         <>
@@ -80,6 +94,31 @@ export default function PaymentForm (props){
                 </TextField>
                 </div> */}
                 {formFields}
+                <FormGroup>
+                    <FormControlLabel control={<Checkbox onChange={handleChecked} />} label="Save credit card for next time / Use existing." />
+                </FormGroup>
+                {checked && 
+                <>
+                    <div>
+                        <TextField
+                            fontSize="inherit" 
+                            variant="filled"
+                            // id={`checkCard`}
+                            value={password}
+                            onChange={handlePassword}
+                            label="Set password, or use existing"
+                            type='password'
+                        >
+                        </TextField>
+                        <Button
+                            variant="outlined"
+                            onClick={()=>{controller.saveCreditCardOrUseCreditCard(props,fields,handleChange)}}
+                        >
+                            Check     
+                        </Button>
+                    </div>
+                </>
+                }
             </div>
             <div>
                 <h3>Order Total</h3>

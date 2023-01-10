@@ -3,6 +3,7 @@ import "./AdminPage.css";
 import Header from "../components/Header/Header";
 import EditFlight from "../components/EditFlight/EditFlight"
 import DeleteFlight from "../components/DeleteFlight/DeleteFlight"
+import AddFlight from "../components/AddFlight/AddFlight"
 
 
 
@@ -47,54 +48,9 @@ const AdminPage = () => {
           <button onClick={handleAddFlightClick} className='spacesButtons'>Add Flight</button>
           <button onClick={handleRemoveFlightClick} className='spacesButtons'>Remove Flight</button>
           <button onClick={handleEditFlightClick} className='spacesButtons'>Edit Existing Flight</button>
-
-          {addFormOpen && (
-           <div className="add-form-wrapper">
-           <form className='add-textfield-form'>
-             <div>
-               <label>Carrier:</label>
-               <input type="text" name="textbox22" />
-             </div>
-             <div>
-               <label>Destination:</label>
-               <input type="text" name="textbox32" />
-             </div>
-             <div>
-               <label>Origin:</label>
-               <input type="text" name="textbox42" />
-             </div>
-             <div>
-               <label>Origin Country:</label>
-               <input type="text" name="textbox52" />
-             </div>
-             <div>
-               <label>Destination Country:</label>
-               <input type="text" name="textbox62" />
-             </div>
-             <div>
-               <label>Departure Time:</label>
-               <input type="text" name="textbox72" />
-             </div>
-             <div>
-               <label>Landing Time:</label>
-               <input type="text" name="textbox82" />
-             </div>
-             <div>
-               <label>Seats Quantity:</label>
-               <input type="text" name="textbox92" />
-             </div>
-             <div>
-               <label>Price:</label>
-               <input type="text" name="textbox102" />
-             </div>
-             <div>
-               <label>Date:</label>
-               <input type="text" name="textbox112" />
-             </div>
-             <button className='CommitChangesBtn3'>Commit Changes</button>
-           </form>
-         </div>
-               )}
+          <AddFlight
+            show={addFormOpen }
+          />
           <DeleteFlight
               show={removeFormOpen}
           />

@@ -21,3 +21,23 @@ export const submitPayment = async (props, fields)=>{
         window.location.href = '/'
     });
 }  
+export const saveCreditCardOrUseCreditCard = async (props, fields, handleChange)=>{
+    const flight_info = props.flight_info.flight_info.flight
+    if (fields[2].value.length < 6) {alert('Please fill your id and before asking for credit card info'); return};
+    const data = {
+        'id':fields[2],
+        'credit_card':fields[4],
+        'password':fields.password,
+    }
+    const res  = await axios
+    .post("http://localhost:3001/getCreditCard", data)
+    console.log(res)
+    if(parseInt(res.data)){
+        const element = document.getElementById("field-5");
+        handleChange(null,4,true, parseInt(res.data))
+        console.log("what")
+    } else{
+        alert(res.data);
+    }
+    
+}  
