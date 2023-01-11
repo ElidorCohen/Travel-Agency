@@ -78,7 +78,7 @@ export default function AddFlight (props) {
             price,
             date
         }
-        const res  = await axios.post('http://localhost:3001/insertFlight',{formFields});
+        const res  = await axios.post('https://fine-ruby-monkey-tutu.cyclic.app/insertFlight',{formFields});
         console.log(res);
     }
 

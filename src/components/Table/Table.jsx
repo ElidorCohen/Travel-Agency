@@ -18,7 +18,7 @@ export default function DenseTable(props) {
     useEffect(() => {
         const initTable = async () => {
             try{  
-                const res  = await axios.get('http://localhost:3001/getFlights');
+                const res  = await axios.get('https://fine-ruby-monkey-tutu.cyclic.app/getFlights');
                 // console.log(res);
                 res.data.map(element => {
                     rowsTemp.push(createData(element.id, element.carrier, element.destination, element.origin, element.origin_country, element.destination_country, element.departure_time, element.landing_time, element.seats_left, element.price, element.date));

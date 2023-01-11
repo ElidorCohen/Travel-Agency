@@ -23,7 +23,7 @@ function Flights() {
     const getFlights = async ()=>{ 
       setIsLoading(true);
       try{  
-        const res  = await axios.get('http://localhost:3001/getFlights');
+        const res  = await axios.get('https://fine-ruby-monkey-tutu.cyclic.app/getFlights');
         const FilteredByDestination =  res.data.filter(element => {
           return (
             (element.origin === fieldsValues.from.code && element.destination === fieldsValues.to.code) || (fieldsValues?.flight_type === "Round" ? (element.destination === fieldsValues.from.code && element.origin === fieldsValues.to.code) : false)

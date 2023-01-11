@@ -137,6 +137,7 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             label="Depart"
                             inputFormat="MM/DD/YYYY"
                             value={fieldValues.depart_date}
+                            minDate={new Date(Date.now())}
                             // onChange={handleChange}
                             onChange={(value, e)=>{
                                 // console.log(value)
@@ -151,7 +152,7 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             label="Return"
                             inputFormat="MM/DD/YYYY"
                             value={fieldValues.return_date}
-                            // onChange={handleChange}
+                            minDate={new Date(Date.now())}
                             onChange={(value, e)=>{
                                controller.handleChange({e:e,name:"return_date", value:value, setFieldValues});
                             }}

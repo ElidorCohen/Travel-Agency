@@ -16,7 +16,7 @@ export const submitPayment = async (props, fields)=>{
         'CVV':fields[5],
     }
     const res  = await axios
-    .post("http://localhost:3001/bookFlight", data).then(()=>{
+    .post("https://fine-ruby-monkey-tutu.cyclic.app/bookFlight", data).then(()=>{
         alert('Booking has recived successfully!');
         window.location.href = '/'
     });
@@ -30,7 +30,7 @@ export const saveCreditCardOrUseCreditCard = async (props, fields, handleChange)
         'password':fields.password,
     }
     const res  = await axios
-    .post("http://localhost:3001/getCreditCard", data)
+    .post("https://fine-ruby-monkey-tutu.cyclic.app/getCreditCard", data)
     console.log(res)
     if(parseInt(res.data)){
         const element = document.getElementById("field-5");

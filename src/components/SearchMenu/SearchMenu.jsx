@@ -27,7 +27,7 @@ export default function SearchMenu  ({ fieldValues, setFieldValues }){
     return (
         <>
         <div id="search_menu_container" style={{marginBottom: "30px"}}>       
-            <Accordion>
+            {/* <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -74,7 +74,7 @@ export default function SearchMenu  ({ fieldValues, setFieldValues }){
                 >
                     <Typography>Departure options</Typography>
                 </AccordionSummary>
-            </Accordion>
+            </Accordion> */}
             {/* <Button>+</Button> */}
             <div id="passanger_number">
                 <p>

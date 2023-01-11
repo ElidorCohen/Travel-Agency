@@ -22,7 +22,7 @@ export default function EditFlight (props) {
             flightId,
         }
         console.log(formFields);
-        const res  = await axios.post('http://localhost:3001/deleteFlight',{formFields});
+        const res  = await axios.post('https://fine-ruby-monkey-tutu.cyclic.app/deleteFlight',{formFields});
     }
 
     

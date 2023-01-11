@@ -78,7 +78,7 @@ export default function EditFlight (props) {
             price,
             date
         }
-        const res  = await axios.post('http://localhost:3001/editFlight',{formFields});
+        const res  = await axios.post('https://fine-ruby-monkey-tutu.cyclic.app/editFlight',{formFields});
         console.log(res);
     }
 

@@ -16,7 +16,7 @@ export default function Deck ({ passengers_number, flight_info, teamB, date, inf
         console.log("flight_info" ,flight_info)
 
         const getTakenSeat = async () => {
-            const res  = await axios.get('http://localhost:3001/getTakenSeats', {params:{'flightId':flight_info.flight.flight_id.id1}});
+            const res  = await axios.get('https://fine-ruby-monkey-tutu.cyclic.app/getTakenSeats', {params:{'flightId':flight_info.flight.flight_id.id1}});
             res.data.map(element => {
                 takenSeats.push(element.seat)
             })
