@@ -12,10 +12,18 @@ export default function FlightCard  ({flightObj1,flightObj2, fieldsValues}){
     // flightObj.price = 200
     const getCarrierLogo = () =>{
         return(
+            flightObj2 ? <div className='carriers_logo_container'>
+                <p style={{paddingTop:"10px"}}>Carrier: {flightObj1.carrier}</p>
+                <p style={{paddingTop:"30px"}}>Carrier: {flightObj2.carrier}</p>
+                {/* <img className="logo_thumbnail" src={EL_AL_New_Logo}/>
+                <img className="logo_thumbnail" src={KLM_LOGO}/> */}
+            </div> :
             <div className='carriers_logo_container'>
-                <img className="logo_thumbnail" src={EL_AL_New_Logo}/>
-                <img className="logo_thumbnail" src={KLM_LOGO}/>
+                Carrier: {flightObj1.carrier}
+                {/* <img className="logo_thumbnail" src={EL_AL_New_Logo}/>
+                <img className="logo_thumbnail" src={KLM_LOGO}/> */}
             </div>
+
         )
     }
 

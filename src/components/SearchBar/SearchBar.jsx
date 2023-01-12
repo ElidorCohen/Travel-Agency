@@ -8,22 +8,24 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import moment from "moment/moment";
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import ReactCountryFlag from "react-country-flag"
-import { BiBarChart } from "react-icons/bi";
+import PriceSlider from "../PriceSlider/PriceSlider";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import * as controller from "../../controllers/homeController";
 import * as states from "../../constants/countries"
 import AutoCompElement from "../AutoCompElement/AutoCompElement";
 import { act } from "react-dom/test-utils";
 import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+
+function valuetext(value) {
+  return `${value}`;
+}
 
 
-console.log(states);
-export default function SearchBar ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) {
+export default function SearchBar () {
     // parse to date only .format('DD-MM-YYYY');
     const [value, setValue] = useState(
         moment(new Date()),
@@ -33,7 +35,8 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
         "return_date":moment(new Date()),
         "pass_num":1
     })
-    
+    // const [priceValue, setPriceValue] = useState([0, 2200]);
+    const [priceValue, setPriceValue] = useState([0, 2200]);
 
     const formRef = useRef({
         'flight_type':"",
@@ -48,7 +51,9 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
     //     console.log(fieldValues)
     // },[fieldValues])
 
-
+    const handlePriceChange = (event, newValue) => {
+        setPriceValue(newValue);
+    };
     const handleSendForm = () => {
         setFieldValues({
             'flight_type':"",
@@ -73,7 +78,7 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
     //   setValue(newValue);
     // };
     
-    
+
 
     return (
         <>
@@ -160,6 +165,17 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             renderInput={(params) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
+                    <Box sx={{ width: 200 }}>
+                        <lable>Price</lable>
+                        <Slider
+                            getAriaLabel={() => 'Temperature range'}
+                            max={2200}
+                            value={priceValue}
+                            onChange={handlePriceChange}
+                            valueLabelDisplay="auto"
+                            getAriaValueText={valuetext}
+                        />
+                    </Box>
                     <ButtonGroup size="small" aria-label="small outlined button group">
                         <Button onClick={()=>{controller.handleCount("up", setFieldValues, fieldValues)}}>+</Button>
                         {<Button>{fieldValues.pass_num}</Button>}
@@ -179,7 +195,8 @@ export default function SearchBar ({ id, teamA, teamB, date, info, setModalConte
                             depart_date:fieldValues.depart_date.toDate(),
                             return_date:fieldValues.return_date.toDate(),
                             flight_type:fieldValues.flight_type,
-                            pass_num:fieldValues.pass_num
+                            pass_num:fieldValues.pass_num,
+                            price:priceValue
                         }}
                         // onClick={controller.setOnCookie.bind(fieldValues)}
                         id="search_button"

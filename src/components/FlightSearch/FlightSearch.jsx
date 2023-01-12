@@ -8,7 +8,7 @@ import { BiBarChart } from "react-icons/bi";
 import { useEffect } from "react";
 
 
-export default function FlightSearch ({ id, teamA, teamB, date, info, setModalContent, setModalOpen, setReFetch, bets, realGames, status }) {
+export default function FlightSearch () {
     return (
         <>
             <div className='flight_search_container'>

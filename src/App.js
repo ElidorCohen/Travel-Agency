@@ -9,10 +9,8 @@ import { Switch } from "@mui/material";
 import AdminPage from "./pages/AdminPage";
 
 function App() {
-
     return (
             <div className="App">
-                {/* <Navbar isConnected={isConnected} setIsConnected={setIsConnected} getCookieName={getCookieName}/> */}
                 <Routes>
                     <Route path="/" exact element={<Home/>}/>
                     <Route path="/flights" element={<Flights/>}></Route> 
